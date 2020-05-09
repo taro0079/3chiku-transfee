@@ -25,6 +25,14 @@ type userName struct {
 	Name string
 }
 
+type Alldata struct {
+	gorm.Model
+	UserId uint
+	Name   string
+	Date   time.Time
+	Fee    int
+}
+
 func dbInit() {
 	db, err := gorm.Open("sqlite3", "3chiku.sqlite3")
 
@@ -34,6 +42,7 @@ func dbInit() {
 	}
 	db.AutoMigrate(&TransFee{})
 	db.AutoMigrate(&userName{})
+	db.AutoMigrate(&Alldata{})
 	defer db.Close()
 }
 
@@ -71,6 +80,9 @@ func dbFeeInsert(fee int, userid uint, date time.Time) {
 		panic("Data base could not be opened (dbUserInsert)")
 	}
 	db.Create(&TransFee{Fee: fee, UserId: userid, Date: date})
+	var username userName
+	db.Where("id = ?", userid).First(&username)
+	db.Create(&Alldata{UserId: userid, Name: username.Name, Date: date, Fee: fee})
 	defer db.Close()
 }
 func userdbGetAll() []userName {
@@ -83,6 +95,17 @@ func userdbGetAll() []userName {
 	db.Order("created_at desc").Find(&username)
 	db.Close()
 	return username
+}
+func dbGetAlldata() []Alldata {
+	db, err := gorm.Open("sqlite3", "3chiku.sqlite3")
+	if err != nil {
+		panic("Database could not be opened ! (dbGetAlldata)")
+	}
+
+	var alldata []Alldata
+	db.Order("created_at desc").Find(&alldata)
+	db.Close()
+	return alldata
 }
 
 func main() {
@@ -144,6 +167,17 @@ func main() {
 			"fee":  fee,
 		})
 	})
+
+	// go to history page
+	router.GET("/showhistory", func(ctx *gin.Context) {
+		alldata := dbGetAlldata()
+		ctx.HTML(200, "showhistory.html", gin.H{
+			"alldata": alldata,
+		})
+
+	})
+
+	// go to taro's page
 	router.StaticFile("/self.png", "./Static/self.png")
 	router.GET("/taro", func(ctx *gin.Context) {
 		ctx.HTML(200, "taro.html", gin.H{})
