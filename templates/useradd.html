@@ -7,17 +7,32 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
 <body>
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" href="/">
-             交通費管理
+                    第三地区中高生会 交通費管理 
          </a>
         </nav>
    <div class="container">
-            <h2>メンバー登録</h2>
-            <form class="form-group" method="POST" action="useradd/new">
-                <p>氏名 <input type="text" name="name" placeholder="Enter your name" class="form-control"></p>
-                <p><input type="submit" value="Send" class="btn btn-primary"></p>
-            </form>
+       <div class="row pt-5">
+           <div class="col">
+                <h2>メンバー登録</h2>
+           </div>
+       </div>
+        <form class="form-group" method="POST" action="useradd/new">
+            <div class="row pt-2">
+                <div class="col">
+                    氏名 <input type="text" name="name" placeholder="Enter your name" class="form-control">
+                </div>
+            </div>
+                    <div class="row justify-content-center pt-5">
+                        <div class="col-auto">
+                            <input type="submit" value="Send" class="btn btn-primary">
+                        </div>
+                        <div class="col-auto">
+                            <a class="btn btn-outline-primary" href="/">Back</a>
+                        </div>
+                    </div>
+                </form>
    </div> 
 </body>
 </html>

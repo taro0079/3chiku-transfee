@@ -7,24 +7,51 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" href="/">
-             交通費管理
+                    第三地区中高生会 交通費管理 
          </a>
         </nav>
    <div class="container">
-        <h2>交通費入力</h2>
-        <form method="POST" action="enterfee/new">
-        <p>氏名　
-            <select name="name" class="form-control"> 
-                {{ range .name }} 
-                <option hidden>Select your name !!</option>
-                <option> {{ .Name }} </option> 
-                {{ end }} 
-            </select>
-        </p>
-        <p>交通費 <input type="text" name="fee" placeholder="Enter fee" class="form-control"></p>
-        <p><input type="submit" value="Send" class="btn btn-primary"></p>
+	   <div class="row justify-content-center pt-5">
+	   	<div class="col">
+        		<h2>交通費入力</h2>
+	   	</div>
+	   </div>
+	   <form method="POST" action="enterfee/new">
+		   <div class="row pt-3 text-left">
+			<div class="col">
+				氏名
+			</div>
+		   </div>
+		   <div class="row pt-1">
+			   <div class="col">
+            			<select name="name" class="form-control"> 
+            			    <option hidden>Select your name !!</option>
+            			    {{ range .name }} 
+            			    <option> {{ .Name }} </option> 
+            			    {{ end }} 
+            			</select>
+			   </div>
+		   </div>
+		   <div class="row pt-3">
+		   	<div class="col">
+        			交通費
+			</div>
+		   </div>
+		   <div class="row pt-1">
+		   	<div class="col">
+		   		<input type="text" name="fee" placeholder="Enter fee" class="form-control">
+		   	</div>
+		   </div>
+		   <div class="row justify-content-center pt-5">
+		   	<div class="col-auto">
+        			<input type="submit" value="Send" class="btn btn-primary">
+		   	</div>
+			<div class="col-auto">
+				<a href="/" class="btn btn-outline-primary">Back</a>
+			</div>
+		   </div>
         </form>
     </div>
     </body>
