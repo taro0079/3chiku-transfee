@@ -6,17 +6,21 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
 <body>
-   <div class="container-sm">
-       <nav class="navbar navbar-light bg-light">
-           <a class="navbar-brand" href="/">
-            交通費管理
-        </a>
-       </nav>
-        <h2>メンバー登録</h2>
-        <form class="form-group" method="POST" action="useradd/new">
-            <p>氏名 <input type="text" name="name" size="30" placeholder="Enter your name" class="form-control"></p>
-            <p><input type="submit" value="Send"></p>
-        </form>
+   <div class="container">
+       <div class='row'>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+             交通費管理
+         </a>
+        </nav>
+       </div>
+       <div class="row">
+            <h2>メンバー登録</h2>
+            <form class="form-group" method="POST" action="useradd/new">
+                <p>氏名 <input type="text" name="name" size="30" placeholder="Enter your name" class="form-control"></p>
+                <p><input type="submit" value="Send"></p>
+            </form>
+       </div>
    </div> 
 </body>
 </html>
