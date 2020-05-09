@@ -2,8 +2,11 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
+	"time"
 
+	"github.com/Songmu/go-httpdate"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/mattn/go-sqlite3"
@@ -13,6 +16,7 @@ type TransFee struct {
 	gorm.Model
 	Fee    int
 	UserId uint
+	Date   time.Time
 }
 
 type userName struct {
@@ -59,14 +63,14 @@ func dbSelectID(name string) uint {
 }
 
 // データベースに交通費とuseridを登録
-func dbFeeInsert(fee int, userid uint) {
+func dbFeeInsert(fee int, userid uint, date time.Time) {
 	db, err := gorm.Open("sqlite3", "3chiku.sqlite3")
 
 	// 例外処理
 	if err != nil {
 		panic("Data base could not be opened (dbUserInsert)")
 	}
-	db.Create(&TransFee{Fee: fee, UserId: userid})
+	db.Create(&TransFee{Fee: fee, UserId: userid, Date: date})
 	defer db.Close()
 }
 func userdbGetAll() []userName {
@@ -127,12 +131,16 @@ func main() {
 	})
 	router.POST("/enterfee/new", func(ctx *gin.Context) {
 		name := ctx.PostForm("name")
+		fmt.Println(ctx.PostForm("date"))
+		date, _ := httpdate.Str2Time(ctx.PostForm("date"), nil)
+		fmt.Println(date)
 		fee, _ := strconv.Atoi(ctx.PostForm("fee"))
 		userid := dbSelectID(name)
 
-		dbFeeInsert(fee, userid)
+		dbFeeInsert(fee, userid, date)
 		ctx.HTML(200, "useraddconfirm.html", gin.H{
 			"name": name,
+			"date": date,
 			"fee":  fee,
 		})
 	})
