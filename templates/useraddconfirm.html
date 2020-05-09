@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <p>以下の内容で登録しました</p>
+    {{ if .fee }}
+    <ul>
+        <li>氏名: {{ .name }}</li>
+        <li>交通費: {{ .fee }}</li>
+    </ul>
+    {{ else }}
+    <p>氏名：{{ .name}} </p>
+    {{ end }}
+    <p><a href="/">Back to home</a></p>
+</body>
+</html>
