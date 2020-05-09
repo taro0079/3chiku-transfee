@@ -144,5 +144,9 @@ func main() {
 			"fee":  fee,
 		})
 	})
+	router.StaticFile("/self.png", "./Static/self.png")
+	router.GET("/taro", func(ctx *gin.Context) {
+		ctx.HTML(200, "taro.html", gin.H{})
+	})
 	router.Run()
 }
