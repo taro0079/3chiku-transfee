@@ -6,15 +6,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <p>以下の内容で登録しました</p>
-    {{ if .fee }}
-    <ul>
-        <li>氏名: {{ .name }}</li>
-        <li>交通費: {{ .fee }}</li>
-    </ul>
-    {{ else }}
-    <p>氏名：{{ .name}} </p>
-    {{ end }}
-    <p><a href="/">Back to home</a></p>
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand" href="/">
+                    第三地区中高生会 交通費管理 
+         </a>
+        </nav>
+	<div class="container">
+		<div class="row pt-5">
+			<div class="col">
+    				<h3>以下の内容で登録しました</h3>
+			</div>
+		</div>
+		<div class="row pt-3">
+			<div class="col">
+				{{ if .fee }}
+    				<ul class="list-group">
+    				    <li class="list-group-item">氏名: {{ .name }}</li>
+    				    <li class="list-group-item">交通費: {{ .fee }}</li>
+    				</ul>
+    				{{ else }}
+    				氏名：{{ .name }}
+    				{{ end }}
+			</div>
+		</div>
+		<div class="row justify-content-center pt-5">
+    			<div class="col-auto">
+				<a href="/" class="btn btn-outline-primary">Back to home</a>
+    			</div>
+		</div>
+	</div>
 </body>
 </html>
